@@ -1,42 +1,46 @@
 package service;
 
+import dao.UserDAO;
 import model.User;
-import org.springframework.stereotype.Service;
-import repository.UserRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 
-@Service
+@Repository
 public class UserService {
 
-    private final UserRepository repository;
+    private final UserDAO dao;
 
-    public UserService(UserRepository repository) {
-        this.repository = repository;
+    public UserService(UserDAO dao) {
+        this.dao = dao;
     }
 
     public List<User> findAll() {
-        return repository.findAll();
-    }
-
-    public Optional<User> findByLogin(String login) {
-        return repository.findByLogin(login);
+        return dao.findAll();
     }
 
     public Optional<User> findById(Long id) {
-        return repository.findById(id);
+        return dao.findById(id);
     }
 
-    public void save(User user) {
-        repository.save(user);
+    public Optional<User> findByLogin(String login) {
+        return dao.findByLogin(login);
     }
 
     public boolean existsByLogin(String login) {
-        return repository.existsByLogin(login);
+        return dao.existsByLogin(login);
     }
 
-    public void deleteById(Long id) {
-        repository.deleteById(id);
+    public void save(User user) {
+        dao.save(user);
+    }
+
+    public void update(User user) {
+        dao.update(user);
+    }
+
+    public boolean deleteById(Long id) {
+        return dao.deleteById(id);
     }
 }

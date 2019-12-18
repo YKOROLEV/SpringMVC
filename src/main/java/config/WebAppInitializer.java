@@ -1,5 +1,5 @@
-import config.PersistenceJPAConfig;
-import config.WebMvcConfig;
+package config;
+
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;

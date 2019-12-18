@@ -61,7 +61,7 @@ public class AdminController {
         user.setName(name);
         user.setPassword(password);
 
-        userService.save(user);
+        userService.update(user);
         return "redirect:/admin";
     }
 

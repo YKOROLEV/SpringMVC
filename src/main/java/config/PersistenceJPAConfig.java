@@ -1,11 +1,12 @@
 package config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.jdbc.datasource.init.DataSourceInitializer;
 import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
@@ -22,17 +23,36 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories(basePackages = {"repository"})
-@ComponentScan(basePackages = {"repository", "service"})
+@ComponentScan(basePackages = {"dao", "service"})
+@PropertySource("classpath:application.properties")
 public class PersistenceJPAConfig {
+
+    @Value("${database.driver}")
+    private String databaseDriver;
+    @Value("${database.url}")
+    private String databaseUrl;
+    @Value("${database.user}")
+    private String databaseUser;
+    @Value("${database.password}")
+    private String databasePassword;
+
+    @Value("${database.init.script}")
+    private String databaseInitScript;
+
+    @Value("${hibernate.hbm2ddl.auto}")
+    private String hibernateHbm2dllAuto;
+    @Value("${hibernate.dialect}")
+    private String hibernateDialect;
+    @Value("${hibernate.show_sql}")
+    private String hibernateShowSql;
 
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/db_example?serverTimezone=UTC");
-        dataSource.setUsername("root");
-        dataSource.setPassword("5070129");
+        dataSource.setDriverClassName(databaseDriver);
+        dataSource.setUrl(databaseUrl);
+        dataSource.setUsername(databaseUser);
+        dataSource.setPassword(databasePassword);
 
         return dataSource;
     }
@@ -40,7 +60,7 @@ public class PersistenceJPAConfig {
     @Bean
     public DataSourceInitializer dataSourceInitializer() {
         ResourceDatabasePopulator resourceDatabase = new ResourceDatabasePopulator();
-        resourceDatabase.addScript(new ClassPathResource("/data.sql"));
+        resourceDatabase.addScript(new ClassPathResource(databaseInitScript));
 
         DataSourceInitializer dataSourceInitializer = new DataSourceInitializer();
         dataSourceInitializer.setDataSource(dataSource());
@@ -77,9 +97,9 @@ public class PersistenceJPAConfig {
 
     Properties jpaProperties() {
         Properties properties = new Properties();
-        properties.setProperty("hibernate.hbm2ddl.auto", "create-drop");
-        properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL8Dialect");
-        properties.setProperty("hibernate.show_sql", "true");
+        properties.setProperty("hibernate.hbm2ddl.auto", hibernateHbm2dllAuto);
+        properties.setProperty("hibernate.dialect", hibernateDialect);
+        properties.setProperty("hibernate.show_sql", hibernateShowSql);
 
         return properties;
     }
