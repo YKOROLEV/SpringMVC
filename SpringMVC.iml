@@ -20,7 +20,7 @@
         <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="Hibernate" />
         <datasource-mapping>
-          <factory-entry name="entityManagerFactory" />
+          <factory-entry name="entityManagerFactory" value="bf2c9392-603f-412b-88ea-637d94d5d9fe" />
         </datasource-mapping>
         <naming-strategy-map />
       </configuration>
@@ -30,6 +30,7 @@
         <fileset id="fileset" name="WebMvcConfig" removed="false">
           <file>file://$MODULE_DIR$/src/main/java/config/WebMvcConfig.java</file>
           <file>file://$MODULE_DIR$/src/main/java/config/PersistenceJPAConfig.java</file>
+          <file>file://$MODULE_DIR$/src/main/java/config/SecurityConfig.java</file>
         </fileset>
       </configuration>
     </facet>
@@ -62,6 +63,8 @@
     <orderEntry type="library" name="Maven: org.springframework.security:spring-security-core:5.2.1.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.security:spring-security-web:5.2.1.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.security:spring-security-config:5.2.1.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.security:spring-security-taglibs:5.2.1.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.security:spring-security-acl:5.2.1.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-orm:5.2.2.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-jdbc:5.2.2.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-tx:5.2.2.RELEASE" level="project" />

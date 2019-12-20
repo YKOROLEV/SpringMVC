@@ -57,7 +57,7 @@ public class PersistenceJPAConfig {
         return dataSource;
     }
 
-    @Bean
+    /*@Bean
     public DataSourceInitializer dataSourceInitializer() {
         ResourceDatabasePopulator resourceDatabase = new ResourceDatabasePopulator();
         resourceDatabase.addScript(new ClassPathResource(databaseInitScript));
@@ -66,7 +66,7 @@ public class PersistenceJPAConfig {
         dataSourceInitializer.setDataSource(dataSource());
         dataSourceInitializer.setDatabasePopulator(resourceDatabase);
         return dataSourceInitializer;
-    }
+    }*/
 
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {

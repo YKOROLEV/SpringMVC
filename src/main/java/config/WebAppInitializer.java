@@ -15,6 +15,7 @@ public class WebAppInitializer implements WebApplicationInitializer {
         AnnotationConfigWebApplicationContext ctx = new AnnotationConfigWebApplicationContext();
         ctx.register(WebMvcConfig.class);
         ctx.register(PersistenceJPAConfig.class);
+        ctx.register(SecurityConfig.class);
 
         ServletRegistration.Dynamic dispatcher = servletContext.addServlet("SpringDispatcher", new DispatcherServlet(ctx));
         dispatcher.setLoadOnStartup(1);

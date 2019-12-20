@@ -1,7 +1,9 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Preproject1</title>
+    <title>Spring MVC</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -19,6 +21,19 @@
 <body>
 
 <p>Index page</p>
+
+<sec:authorize access="not isFullyAuthenticated()">
+    <a href="/login">Please Sigh in</a>
+</sec:authorize>
+<sec:authorize access="isFullyAuthenticated()">
+    <sec:authorize access="hasRole('USER') and not hasRole('ADMIN')">
+        <a href="/user">Go user page</a>
+    </sec:authorize>
+
+    <sec:authorize access="hasRole('ADMIN')">
+        <a href="/admin">Go admin page</a>
+    </sec:authorize>
+</sec:authorize>
 
 </body>
 </html>

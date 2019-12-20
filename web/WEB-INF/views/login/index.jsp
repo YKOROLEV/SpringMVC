@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Preproject1</title>
+    <title>Spring MVC</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -21,7 +21,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-            <form method="post" action="/login">
+            <form method="post" action="/doLogin">
                 <div class="form-group">
                     <label for="inputLogin">Login</label>
                     <input type="text" class="form-control" id="inputLogin" name="login" placeholder="Login">
